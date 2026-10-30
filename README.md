@@ -1,2 +1,1 @@
-# jmarin
-My site
+[JMarin](https://javihaus.github.io/jmarin/)
