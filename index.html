@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="JMarin is an independent AI evaluation practice in Madrid. Language models, agents and physics-based simulations, tested before production.">
 <title>JMarin AI Evaluation</title>
+<link rel="icon" type="image/svg+xml" href="images/jmarin-logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -12,17 +13,17 @@
 /* Layout: one narrow reading column on a measured grid, like an engineering test report; section labels sit in a left margin on wide screens */
 :root{
   --paper:#F5F6F4; --ink:#141C24; --muted:#56616C; --rule:#D5DAD8;
-  --blue:#1E45C8; --red:#D23A2A; --surface:#FFFFFF;
+  --blue:#4A6B82; --red:#2F4A5E; --surface:#FFFFFF;
   --display:"Jost","Futura","Century Gothic",Helvetica,Arial,sans-serif;
   --body:"Helvetica Neue",Helvetica,Arial,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --paper:#10161C; --ink:#E7EBEE; --muted:#9AA6B0; --rule:#2A343D;
-  --blue:#7C9BFF; --red:#FF7A68; --surface:#161E25; color-scheme:dark}}
+  --blue:#8FB2CC; --red:#B9CEDD; --surface:#161E25; color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#10161C; --ink:#E7EBEE; --muted:#9AA6B0; --rule:#2A343D;
-  --blue:#7C9BFF; --red:#FF7A68; --surface:#161E25; color-scheme:dark}
+  --blue:#8FB2CC; --red:#B9CEDD; --surface:#161E25; color-scheme:dark}
 
 *{box-sizing:border-box}
 body{margin:0}
@@ -36,8 +37,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
   padding-block:22px;border-bottom:1px solid var(--rule)}
 .mark{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.02em;color:var(--ink);text-decoration:none}
-.mark i{display:inline-block;width:14px;height:14px;background:var(--red);border-radius:50%}
-.mark i+i{background:var(--blue);border-radius:0;margin-left:-6px}
+.mark .logo{width:58px;height:58px;margin:-18px 0 -18px -3px}
 nav{display:flex;gap:20px;flex-wrap:wrap;font-family:var(--display);font-size:15px}
 nav a{color:var(--muted);text-decoration:none}
 nav a:hover{color:var(--ink)}
@@ -111,7 +111,7 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;ju
 
 <div class="wrap">
 <header class="top">
-  <a class="mark" href="#top" aria-label="JMarin home"><span><i></i><i></i></span>JMarin</a>
+  <a class="mark" href="#top" aria-label="JMarin home"><img class="logo" src="images/jmarin-logo.svg" alt="">JMarin</a>
   <nav aria-label="Sections">
     <a href="#what">What I test</a><a href="#cases">Cases</a><a href="#how">How I work</a><a href="#writing">Writing</a><a href="#contact">Contact</a>
   </nav>
