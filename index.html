@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="JMarin is an independent AI evaluation practice in Madrid. Language models, agents and physics-based simulations, tested before production.">
+<title>JMarin AI Evaluation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow reading column on a measured grid, like an engineering test report; section labels sit in a left margin on wide screens */
+:root{
+  --paper:#F5F6F4; --ink:#141C24; --muted:#56616C; --rule:#D5DAD8;
+  --blue:#1E45C8; --red:#D23A2A; --surface:#FFFFFF;
+  --display:"Jost","Futura","Century Gothic",Helvetica,Arial,sans-serif;
+  --body:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#10161C; --ink:#E7EBEE; --muted:#9AA6B0; --rule:#2A343D;
+  --blue:#7C9BFF; --red:#FF7A68; --surface:#161E25; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#10161C; --ink:#E7EBEE; --muted:#9AA6B0; --rule:#2A343D;
+  --blue:#7C9BFF; --red:#FF7A68; --surface:#161E25; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0}
+img{max-width:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--blue);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto}
+
+header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  padding-block:22px;border-bottom:1px solid var(--rule)}
+.mark{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.02em;color:var(--ink);text-decoration:none}
+.mark i{display:inline-block;width:14px;height:14px;background:var(--red);border-radius:50%}
+.mark i+i{background:var(--blue);border-radius:0;margin-left:-6px}
+nav{display:flex;gap:20px;flex-wrap:wrap;font-family:var(--display);font-size:15px}
+nav a{color:var(--muted);text-decoration:none}
+nav a:hover{color:var(--ink)}
+
+section{display:grid;grid-template-columns:180px minmax(0,1fr);gap:24px 40px;padding-block:56px;border-bottom:1px solid var(--rule)}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:6px}
+@media (max-width:760px){section{grid-template-columns:1fr;padding-block:40px;gap:12px}}
+
+h1,h2,h3{font-family:var(--display);font-weight:500;text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,5.4vw,58px);line-height:1.08;letter-spacing:-.01em;max-width:16ch}
+h1 em{font-style:normal;color:var(--blue)}
+h2{font-size:clamp(24px,3vw,32px);line-height:1.2;margin-bottom:18px;max-width:28ch}
+h3{font-size:19px;line-height:1.3}
+p{margin:0 0 14px;max-width:64ch}
+.lede{font-size:19px;color:var(--muted);max-width:56ch;margin-top:22px}
+.hero{padding-block:72px 56px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.btn{font-family:var(--display);font-size:16px;font-weight:500;padding:11px 20px;border:1.5px solid var(--ink);color:var(--ink);background:transparent;text-decoration:none;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn:hover{border-color:var(--blue)}
+
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+@media (max-width:900px){.three{grid-template-columns:1fr}}
+.three div{border-top:3px solid var(--ink);padding-top:14px}
+.three div:nth-child(2){border-top-color:var(--blue)}
+.three div:nth-child(3){border-top-color:var(--red)}
+.three p{font-size:16px;color:var(--muted);margin-top:8px}
+
+.cases{display:grid;gap:0}
+.case{display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px 28px;padding-block:20px;border-top:1px solid var(--rule)}
+.case:first-child{border-top:none;padding-top:0}
+.case .sector{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);padding-top:4px}
+.case p{font-size:16px;margin:6px 0 0;color:var(--muted)}
+.case .result{font-family:var(--mono);font-size:13px;color:var(--ink);margin-top:8px;font-variant-numeric:tabular-nums}
+@media (max-width:600px){.case{grid-template-columns:1fr}}
+.note{font-size:14px;color:var(--muted);margin-top:18px}
+
+.ways{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:700px){.ways{grid-template-columns:1fr}}
+.way{background:var(--surface);border:1px solid var(--rule);padding:20px}
+.way .len{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.08em;text-transform:uppercase}
+.way h3{margin-top:6px}
+.way p{font-size:15.5px;color:var(--muted);margin:8px 0 0}
+
+.facts{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
+.facts li{padding-left:18px;position:relative;max-width:64ch}
+.facts li::before{content:"";position:absolute;left:0;top:.65em;width:8px;height:8px;background:var(--blue)}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.filters button{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border:1px solid var(--rule);background:transparent;color:var(--muted);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.posts{list-style:none;padding:0;margin:0}
+.posts li{display:grid;grid-template-columns:112px minmax(0,1fr);gap:4px 24px;padding-block:16px;border-top:1px solid var(--rule)}
+.posts li:first-child{border-top:none}
+.posts .meta{font-family:var(--mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:4px;line-height:1.5}
+.posts .meta b{display:block;font-weight:500;color:var(--blue);letter-spacing:.06em}
+.posts a{font-family:var(--display);font-size:19px;font-weight:500;color:var(--ink);text-decoration:none;line-height:1.3}
+.posts a:hover{color:var(--blue);text-decoration:underline}
+.posts p{font-size:15px;color:var(--muted);margin:4px 0 0}
+@media (max-width:600px){.posts li{grid-template-columns:1fr}}
+
+.contact-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.email{font-family:var(--mono);font-size:18px;padding:10px 14px;background:var(--surface);border:1px solid var(--rule);user-select:all}
+#copied{font-family:var(--mono);font-size:13px;color:var(--blue)}
+footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (prefers-reduced-motion:no-preference){.btn,.posts a{transition:color .15s,border-color .15s}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="top">
+  <a class="mark" href="#top" aria-label="JMarin home"><span><i></i><i></i></span>JMarin</a>
+  <nav aria-label="Sections">
+    <a href="#what">What I test</a><a href="#cases">Cases</a><a href="#how">How I work</a><a href="#writing">Writing</a><a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="label">AI evaluation · Madrid</div>
+  <div>
+    <h1>I test AI systems <em>before</em> they go into production.</h1>
+    <p class="lede">Language models, agents and physics-based simulations. I find out whether they work, where they fail and why, and I write it down for the person who has to sign off on the deployment.</p>
+    <div class="cta"><a class="btn primary" href="#contact">Book a 15-minute call</a><a class="btn" href="#cases">See the cases</a></div>
+  </div>
+</section>
+
+<section id="what">
+  <div class="label">What I test</div>
+  <div>
+    <h2>Three kinds of system, one question: can you defend it?</h2>
+    <div class="three">
+      <div><h3>Language models and agents</h3><p>Customer-facing assistants, RAG pipelines and autonomous agents. When they should hand over to a human, whether answers are supported by the sources, and whether behaviour tested in English holds in Spanish, Catalan or Galician.</p></div>
+      <div><h3>Physics-based digital twins</h3><p>Models of batteries, pumps, plants and grids. Whether the forecast respects the physics, how wide the uncertainty really is, and whether it holds on equipment the model has never seen.</p></div>
+      <div><h3>Evidence for governance</h3><p>Test records a board, an auditor or a regulator can read. Mapped to model-risk practice in banking and insurance, and to the accuracy and robustness duties in the EU AI Act.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="cases">
+  <div class="label">Cases</div>
+  <div>
+    <h2>What the tests found</h2>
+    <div class="cases">
+      <div class="case"><div class="sector">Healthcare</div><div><h3>The most accurate triage model was the most dangerous one</h3><p>Compared three frontier language models on 50 standardised emergency-department cases. Ranked by accuracy, the winner missed 5 of the 28 patients who needed immediate care. The model with lower accuracy missed none of them.</p><div class="result">Accuracy 90% vs 86% · missed immediate cases 5 vs 0</div></div></div>
+      <div class="case"><div class="sector">Energy storage</div><div><h3>Capacity you can commit to, measured in the field</h3><p>Forecast the remaining capacity of 21 home storage systems over eight years of field records, LFP, NMC and LMO chemistries, each one forecast without seeing its own data. Committing at the lower edge of the 90% band held in 40 of 42 field capacity tests.</p><div class="result">40 of 42 tests delivered · typical headroom 11 points</div></div></div>
+      <div class="case"><div class="sector">Energy storage</div><div><h3>Ordering the battery replacement before it fails</h3><p>Physics-based digital twin, calibrated on 126 cells and tested on 44 it had never seen. The replacement order came before end of life on every one of them. Presented at the IEEE PES General Meeting 2026.</p><div class="result">44 of 44 cells · median 76 cycles ahead · band coverage 96.2% for a 90% band</div></div></div>
+      <div class="case"><div class="sector">Banking · credit risk</div><div><h3>A credit model that still works three years later</h3><p>Out-of-time test on mortgage loan data, scoring loans 12, 36 and 60 months after training. A physics-constrained neural network kept its ranking power where gradient boosting lost it. Accepted at IEEE DSA 2025.</p><div class="result">AUC at 12 months 0.80 vs 0.61 · at 36 months 0.76 vs 0.62</div></div></div>
+      <div class="case"><div class="sector">Energy · contracts</div><div><h3>A verifier that never passed a false answer</h3><p>102 checks on the published supply contracts of a listed energy company and two technical papers, using a logic solver instead of a language model as the judge. No false answer was approved; anything it could not prove went to a person.</p><div class="result">0 false answers passed in 102 checks</div></div></div>
+      <div class="case"><div class="sector">Multilingual service</div><div><h3>English calibration does not travel</h3><p>Tested whether a hallucination check calibrated in English works in Spanish, Catalan and Galician, on 400 test answers per language. Used as shipped, it did worse than chance. With a multilingual encoder and calibration in each language, it became usable.</p><div class="result">AUROC 0.36–0.40 as shipped · 0.74–0.75 calibrated per language</div></div></div>
+      <div class="case"><div class="sector">Banking · customer service</div><div><h3>An LLM judge that disagrees with itself</h3><p>Compared four ways of catching invented answers in a retail-banking FAQ assistant. The LLM judge caught the most, but changed its verdict between identical runs. Fixed rules raised no false alarms and left a record an auditor can check.</p><div class="result">Judge 11 of 12 correct, not repeatable · rules 0 false alarms</div></div></div>
+      <div class="case"><div class="sector">Legal · EU AI Act</div><div><h3>The error a grounding score cannot see</h3><p>Evaluated a compliance agent answering from the AI Act. When it retrieved the wrong article, its answer still looked well grounded. Only a separate relevance check caught it.</p><div class="result">Relevance 0.44 vs 0.74 on the right article · grounding score unchanged</div></div></div>
+      <div class="case"><div class="sector">LLM software · client</div><div><h3>Verification engine for an LLM reliability startup</h3><p>Formal review of why the original design could not reach the accuracy the product needed, then a redesign with layered checks and escalation to a human on cases no check can decide.</p><div class="result">+50% end-to-end accuracy in the team's own evaluation</div></div></div>
+      <div class="case"><div class="sector">Marketing · client</div><div><h3>Marketing Mix Model for a regional McCann agency</h3><p>Designed and delivered the channel-interaction model where standard linear marketing mix modelling was producing results nobody could use. Public testimonial on the NextBrain client page.</p></div></div>
+    </div>
+    <p class="note">Work marked "client" was commissioned. Client names and references available on request.</p>
+  </div>
+</section>
+
+<section id="how">
+  <div class="label">How I work</div>
+  <div>
+    <h2>Fixed scope, written results</h2>
+    <div class="ways">
+      <div class="way"><div class="len">2–3 weeks</div><h3>Diagnostic</h3><p>One system, one clear question. You get a test report: what was tested, what failed, how often, and what I would change.</p></div>
+      <div class="way"><div class="len">60–90 days</div><h3>Implementation support</h3><p>Turning the diagnostic into checks that run in production, with your team.</p></div>
+      <div class="way"><div class="len">Ongoing</div><h3>Fractional advisory</h3><p>A second opinion on AI vendors, pilots and deployment decisions.</p></div>
+      <div class="way"><div class="len">Half day to two days</div><h3>Training for executives</h3><p>What AI does inside a company, what it costs, and how to know if it works. For leadership and technical teams.</p></div>
+    </div>
+    <p class="note">Remote across Europe, or on site in the Madrid area. English, Spanish and Catalan.</p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="label">Background</div>
+  <div>
+    <h2>Twenty years on the other side of the decision</h2>
+    <p>I am an industrial engineer. Before AI I ran plants, sales operations and P&amp;Ls at Endress+Hauser, Coram and Traspal, and I signed the deployments myself. Since 2016 I have worked in data science and AI. I test the way I would have wanted a system tested when it was my signature on it.</p>
+    <ul class="facts">
+      <li>My research has been accepted at IEEE, ACL and NeurIPS.</li>
+      <li>Invited speaker, IEEE PES General Meeting 2026, panel on digital twins for grid-scale energy storage.</li>
+      <li>Open source: <a href="https://groundlens.dev" target="_blank" rel="noopener">GroundLens</a>, checks for LLM answers, and <a href="https://github.com/otwin-core" target="_blank" rel="noopener">Otwin</a>, a physics engine for digital twins.</li>
+      <li>I teach AI and digital technologies in two master's programmes at Universidad Europea.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="writing">
+  <div class="label">Writing</div>
+  <div>
+    <h2>What I find when I test</h2>
+    <div class="filters" role="group" aria-label="Filter articles">
+      <button type="button" id="f-all" data-f="all" aria-pressed="true">All</button>
+      <button type="button" id="f-en" data-f="en" aria-pressed="false">English</button>
+      <button type="button" id="f-es" data-f="es" aria-pressed="false">Español</button>
+    </div>
+    <ul class="posts" id="posts"></ul>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="label">Contact</div>
+  <div>
+    <h2>If your AI system has to go into production and someone has to sign for it, write to me.</h2>
+    <p>A 15-minute call is usually enough to see whether I can help.</p>
+    <div class="contact-row">
+      <span class="email" id="email">javier@jmarin.info</span>
+      <button class="btn" type="button" id="copy">Copy email</button>
+      <span id="copied" aria-live="polite"></span>
+    </div>
+    <p style="margin-top:16px"><a href="https://www.linkedin.com/in/javiermarinvalenzuela/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.malt.com/profile/javiermarinvalenzuela" target="_blank" rel="noopener">Malt</a> · <a href="https://github.com/Javihaus" target="_blank" rel="noopener">GitHub</a></p>
+  </div>
+</section>
+
+<footer><span>JMarin · Independent AI evaluation · Madrid</span><span>Javier Marín Valenzuela</span></footer>
+</div>
+
+<script>
+const POSTS=[
+ {d:"2026-10-28",src:"Real AI",l:"es",t:"Gobernanza de la IA en la sombra",s:"Lo que no podemos eludir en responsabilidad no lo podemos excluir de gobernanza.",u:"https://www.linkedin.com/pulse/gobernanza-de-la-ia-en-sombra-javier-marin-j0wge"},
+ {d:"2026-10-22",src:"Real AI",l:"es",t:"Una idea es verdad para quien la tiene. Solo es real cuando el grupo la acepta",s:"Si toda la empresa usa el mismo modelo, tus mejores directores pueden traerte la misma idea con tres nombres.",u:"https://www.linkedin.com/pulse/una-idea-es-verdad-para-quien-la-tiene-solo-real-cuando-javier-marin-p9xxe"},
+ {d:"2026-10-15",src:"Real AI",l:"es",t:"Los costes que el piloto no enseña",s:"Lo que un piloto de IA deja fuera de la cuenta.",u:"https://www.linkedin.com/pulse/los-costes-que-el-piloto-ense%C3%B1a-javier-marin-zfsae"},
+ {d:"2026-09-25",src:"Real AI",l:"es",t:"La EU AI Act no se ha aplazado por las empresas: se retrasa porque falta la forma de medir",s:"Si mañana alguien nos pide que demostremos la precisión de nuestro sistema, ¿con qué lo demostramos?",u:"https://www.linkedin.com/pulse/la-eu-ai-act-se-ha-aplazado-por-las-empresas-retrasa-porque-marin-tlb0e"},
+ {d:"2026-08-25",src:"Towards Data Science",l:"en",t:"Hallucinations, Watermarks, Removers, and a Squeezed Balloon",s:"Watermarks act at the model's moments of doubt, and so do the safety checks that catch AI mistakes.",u:"https://towardsdatascience.com/hallucinations-watermarks-removers-and-a-squeezed-balloon/"},
+ {d:"2026-08-18",src:"Towards Data Science",l:"en",t:"Ten Is Not a Hundred",s:"The number that fooled every hallucination detector.",u:"https://towardsdatascience.com/ten-is-not-a-hundred/"},
+ {d:"2026-07-02",src:"Towards Data Science",l:"en",t:"Design Loops, Not Prompts",s:"Agentic AI, but don't let the model check itself.",u:"https://towardsdatascience.com/design-loops-not-prompts/"},
+ {d:"2026-03-16",src:"Towards Data Science",l:"en",t:"Hallucinations in LLMs Are Not a Bug in the Data",s:"It's a feature of the architecture.",u:"https://towardsdatascience.com/hallucinations-in-llms-are-not-a-bug-in-the-data/"},
+ {d:"2026-01-17",src:"Towards Data Science",l:"en",t:"A Geometric Method to Spot Hallucinations Without an LLM Judge",s:"How geometry shows when an answer has drifted away from its sources.",u:"https://towardsdatascience.com/the-red-bird/"},
+ {d:"2025-12-22",src:"Towards Data Science",l:"en",t:"The Geometry of Laziness: What Angles Reveal About AI Hallucinations",s:"Failing forward, and why sometimes the math knows things before we do.",u:"https://towardsdatascience.com/the-geometry-of-laziness-what-angles-reveal-about-ai-hallucinations/"},
+ {d:"2025-11-04",src:"Towards Data Science",l:"en",t:"What to Do When Your Credit Risk Model Works Today, but Breaks Six Months Later",s:"Why credit models drift over time, and how to fix it.",u:"https://towardsdatascience.com/your-credit-risk-model-works-today-it-breaks-in-six-months/"},
+ {d:"2025-10-21",src:"Medium",l:"en",t:"I Failed to Build a Learned Hallucination Detector",s:"What did not work, and the rule-based approach that did.",u:"https://medium.com/data-science-collective/i-failed-to-build-a-learned-hallucination-detector-179c5cde32f6"},
+ {d:"2025-09-30",src:"Medium",l:"en",t:"Testing AI Systems Against Business Reality",s:"Deployment and testing patterns that hold up with real customers, not only in controlled evaluations.",u:"https://medium.datadriveninvestor.com/testing-ai-systems-against-business-reality-79ee29f58e28"},
+ {d:"2025-09-24",src:"Medium",l:"en",t:"How Prompting Helps You Comply with the EU AI Act",s:"Prompt design that supports transparency, auditability and risk management.",u:"https://generativeai.pub/how-prompting-helps-you-comply-with-the-eu-ai-act-with-examples-d6bb2b682314"}
+];
+const fmt=d=>new Date(d+"T12:00:00").toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});
+function render(f){
+  const ul=document.getElementById("posts");
+  ul.innerHTML="";
+  POSTS.filter(p=>f==="all"||p.l===f).forEach(p=>{
+    const li=document.createElement("li");
+    li.innerHTML=`<div class="meta"><b>${p.src}</b>${fmt(p.d)}</div><div><a href="${p.u}" target="_blank" rel="noopener" lang="${p.l}"></a><p lang="${p.l}"></p></div>`;
+    li.querySelector("a").textContent=p.t; li.querySelector("p").textContent=p.s;
+    ul.appendChild(li);
+  });
+}
+document.querySelectorAll(".filters button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".filters button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));
+  render(b.dataset.f);
+}));
+render("all");
+document.getElementById("copy").addEventListener("click",()=>{
+  const out=document.getElementById("copied"), txt="javier@jmarin.info";
+  const sel=()=>{const r=document.createRange();r.selectNodeContents(document.getElementById("email"));const s=getSelection();s.removeAllRanges();s.addRange(r);out.textContent="Selected. Press Ctrl+C or ⌘C.";};
+  try{navigator.clipboard.writeText(txt).then(()=>out.textContent="Copied",sel);}catch(e){sel();}
+});
+</script>
+
+</body>
+</html>
