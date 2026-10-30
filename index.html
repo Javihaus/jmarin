@@ -121,7 +121,7 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;ju
   <div class="label">AI evaluation · Madrid</div>
   <div>
     <h1>I test AI systems <em>before</em> they go into production.</h1>
-    <p class="lede">Language models, agents and physics-based simulations. I find out whether they work, where they fail and why, and I write it down for the person who has to sign off on the deployment.</p>
+    <p class="lede">Language models, agents and physics-based simulations. Each evaluation ends in a written report with the cases tested, the failures found and how often they occur.</p>
     <div class="cta"><a class="btn primary" href="#contact">Book a 15-minute call</a><a class="btn" href="#cases">See the cases</a></div>
   </div>
 </section>
@@ -129,11 +129,11 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;ju
 <section id="what">
   <div class="label">What I test</div>
   <div>
-    <h2>Three kinds of system, one question: can you defend it?</h2>
+    <h2>What I test</h2>
     <div class="three">
       <div><h3>Language models and agents</h3><p>Customer-facing assistants, RAG pipelines and autonomous agents. When they should hand over to a human, whether answers are supported by the sources, and whether behaviour tested in English holds in Spanish, Catalan or Galician.</p></div>
       <div><h3>Physics-based digital twins</h3><p>Models of batteries, pumps, plants and grids. Whether the forecast respects the physics, how wide the uncertainty really is, and whether it holds on equipment the model has never seen.</p></div>
-      <div><h3>Evidence for governance</h3><p>Test records a board, an auditor or a regulator can read. Mapped to model-risk practice in banking and insurance, and to the accuracy and robustness duties in the EU AI Act.</p></div>
+      <div><h3>Evidence for governance</h3><p>Written test records organised for model-risk reviews in banking and insurance, and for the accuracy and robustness requirements of the EU AI Act.</p></div>
     </div>
   </div>
 </section>
@@ -141,16 +141,16 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;ju
 <section id="cases">
   <div class="label">Cases</div>
   <div>
-    <h2>What the tests found</h2>
+    <h2>Cases</h2>
     <div class="cases">
-      <div class="case"><div class="sector">Healthcare</div><div><h3>The most accurate triage model was the most dangerous one</h3><p>Compared three frontier language models on 50 standardised emergency-department cases. Ranked by accuracy, the winner missed 5 of the 28 patients who needed immediate care. The model with lower accuracy missed none of them.</p><div class="result">Accuracy 90% vs 86% · missed immediate cases 5 vs 0</div></div></div>
-      <div class="case"><div class="sector">Energy storage</div><div><h3>Capacity you can commit to, measured in the field</h3><p>Forecast the remaining capacity of 21 home storage systems over eight years of field records, LFP, NMC and LMO chemistries, each one forecast without seeing its own data. Committing at the lower edge of the 90% band held in 40 of 42 field capacity tests.</p><div class="result">40 of 42 tests delivered · typical headroom 11 points</div></div></div>
-      <div class="case"><div class="sector">Energy storage</div><div><h3>Ordering the battery replacement before it fails</h3><p>Physics-based digital twin, calibrated on 126 cells and tested on 44 it had never seen. The replacement order came before end of life on every one of them. Presented at the IEEE PES General Meeting 2026.</p><div class="result">44 of 44 cells · median 76 cycles ahead · band coverage 96.2% for a 90% band</div></div></div>
-      <div class="case"><div class="sector">Banking · credit risk</div><div><h3>A credit model that still works three years later</h3><p>Out-of-time test on mortgage loan data, scoring loans 12, 36 and 60 months after training. A physics-constrained neural network kept its ranking power where gradient boosting lost it. Accepted at IEEE DSA 2025.</p><div class="result">AUC at 12 months 0.80 vs 0.61 · at 36 months 0.76 vs 0.62</div></div></div>
-      <div class="case"><div class="sector">Energy · contracts</div><div><h3>A verifier that never passed a false answer</h3><p>102 checks on the published supply contracts of a listed energy company and two technical papers, using a logic solver instead of a language model as the judge. No false answer was approved; anything it could not prove went to a person.</p><div class="result">0 false answers passed in 102 checks</div></div></div>
-      <div class="case"><div class="sector">Multilingual service</div><div><h3>English calibration does not travel</h3><p>Tested whether a hallucination check calibrated in English works in Spanish, Catalan and Galician, on 400 test answers per language. Used as shipped, it did worse than chance. With a multilingual encoder and calibration in each language, it became usable.</p><div class="result">AUROC 0.36–0.40 as shipped · 0.74–0.75 calibrated per language</div></div></div>
-      <div class="case"><div class="sector">Banking · customer service</div><div><h3>An LLM judge that disagrees with itself</h3><p>Compared four ways of catching invented answers in a retail-banking FAQ assistant. The LLM judge caught the most, but changed its verdict between identical runs. Fixed rules raised no false alarms and left a record an auditor can check.</p><div class="result">Judge 11 of 12 correct, not repeatable · rules 0 false alarms</div></div></div>
-      <div class="case"><div class="sector">Legal · EU AI Act</div><div><h3>The error a grounding score cannot see</h3><p>Evaluated a compliance agent answering from the AI Act. When it retrieved the wrong article, its answer still looked well grounded. Only a separate relevance check caught it.</p><div class="result">Relevance 0.44 vs 0.74 on the right article · grounding score unchanged</div></div></div>
+      <div class="case"><div class="sector">Healthcare</div><div><h3>Emergency triage: three language models compared</h3><p>Compared three frontier language models on 50 standardised emergency-department cases. Ranked by accuracy, the winner missed 5 of the 28 patients who needed immediate care. The model with lower accuracy missed none of them.</p><div class="result">Accuracy 90% vs 86% · missed immediate cases 5 vs 0</div></div></div>
+      <div class="case"><div class="sector">Energy storage</div><div><h3>Battery capacity forecasts checked against field tests</h3><p>Forecast the remaining capacity of 21 home storage systems over eight years of field records, LFP, NMC and LMO chemistries, each one forecast without seeing its own data. Committing at the lower edge of the 90% band held in 40 of 42 field capacity tests.</p><div class="result">40 of 42 tests delivered · typical headroom 11 points</div></div></div>
+      <div class="case"><div class="sector">Energy storage</div><div><h3>Battery replacement timing from a physics-based model</h3><p>Physics-based digital twin, calibrated on 126 cells and tested on 44 it had never seen. The replacement order came before end of life on every one of them. Presented at the IEEE PES General Meeting 2026.</p><div class="result">44 of 44 cells · median 76 cycles ahead · band coverage 96.2% for a 90% band</div></div></div>
+      <div class="case"><div class="sector">Banking · credit risk</div><div><h3>Credit scoring stability over time</h3><p>Out-of-time test on mortgage loan data, scoring loans 12, 36 and 60 months after training. A physics-constrained neural network kept its ranking power where gradient boosting lost it. Accepted at IEEE DSA 2025.</p><div class="result">AUC at 12 months 0.80 vs 0.61 · at 36 months 0.76 vs 0.62</div></div></div>
+      <div class="case"><div class="sector">Energy · contracts</div><div><h3>Logic-based checking of energy supply contracts</h3><p>102 checks on the published supply contracts of a listed energy company and two technical papers, using a logic solver instead of a language model as the judge. No false answer was approved; anything it could not prove went to a person.</p><div class="result">0 false answers passed in 102 checks</div></div></div>
+      <div class="case"><div class="sector">Multilingual service</div><div><h3>Hallucination checks in Spanish, Catalan and Galician</h3><p>Tested whether a hallucination check calibrated in English works in Spanish, Catalan and Galician, on 400 test answers per language. Used as shipped, it did worse than chance. With a multilingual encoder and calibration in each language, it became usable.</p><div class="result">AUROC 0.36–0.40 as shipped · 0.74–0.75 calibrated per language</div></div></div>
+      <div class="case"><div class="sector">Banking · customer service</div><div><h3>Repeatability of an LLM judge in banking customer service</h3><p>Compared four ways of catching invented answers in a retail-banking FAQ assistant. The LLM judge caught the most, but changed its verdict between identical runs. Fixed rules raised no false alarms and left a record an auditor can check.</p><div class="result">Judge 11 of 12 correct, not repeatable · rules 0 false alarms</div></div></div>
+      <div class="case"><div class="sector">Legal · EU AI Act</div><div><h3>Wrong-article retrieval in an EU AI Act agent</h3><p>Evaluated a compliance agent answering from the AI Act. When it retrieved the wrong article, its answer still looked well grounded. Only a separate relevance check caught it.</p><div class="result">Relevance 0.44 vs 0.74 on the right article · grounding score unchanged</div></div></div>
       <div class="case"><div class="sector">LLM software · client</div><div><h3>Verification engine for an LLM reliability startup</h3><p>Formal review of why the original design could not reach the accuracy the product needed, then a redesign with layered checks and escalation to a human on cases no check can decide.</p><div class="result">+50% end-to-end accuracy in the team's own evaluation</div></div></div>
       <div class="case"><div class="sector">Marketing · client</div><div><h3>Marketing Mix Model for a regional McCann agency</h3><p>Designed and delivered the channel-interaction model where standard linear marketing mix modelling was producing results nobody could use. Public testimonial on the NextBrain client page.</p></div></div>
     </div>
@@ -161,7 +161,7 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;ju
 <section id="how">
   <div class="label">How I work</div>
   <div>
-    <h2>Fixed scope, written results</h2>
+    <h2>How I work</h2>
     <div class="ways">
       <div class="way"><div class="len">2–3 weeks</div><h3>Diagnostic</h3><p>One system, one clear question. You get a test report: what was tested, what failed, how often, and what I would change.</p></div>
       <div class="way"><div class="len">60–90 days</div><h3>Implementation support</h3><p>Turning the diagnostic into checks that run in production, with your team.</p></div>
@@ -175,8 +175,8 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;ju
 <section id="about">
   <div class="label">Background</div>
   <div>
-    <h2>Twenty years on the other side of the decision</h2>
-    <p>I am an industrial engineer. Before AI I ran plants, sales operations and P&amp;Ls at Endress+Hauser, Coram and Traspal, and I signed the deployments myself. Since 2016 I have worked in data science and AI. I test the way I would have wanted a system tested when it was my signature on it.</p>
+    <h2>Background</h2>
+    <p>I am an industrial engineer. Before AI I ran plants, sales operations and P&amp;Ls at Endress+Hauser, Coram and Traspal, and I signed the deployments myself. Since 2016 I have worked in data science and AI.</p>
     <ul class="facts">
       <li>My research has been accepted at IEEE, ACL and NeurIPS.</li>
       <li>Invited speaker, IEEE PES General Meeting 2026, panel on digital twins for grid-scale energy storage.</li>
@@ -202,7 +202,7 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;ju
 <section id="contact">
   <div class="label">Contact</div>
   <div>
-    <h2>If your AI system has to go into production and someone has to sign for it, write to me.</h2>
+    <h2>Contact</h2>
     <p>A 15-minute call is usually enough to see whether I can help.</p>
     <div class="contact-row">
       <span class="email" id="email">javier@jmarin.info</span>
